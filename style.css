@@ -1,4 +1,4 @@
-@layer globals, components, utilities;
+@layer globals, layout, components, utilities;
 
 @layer globals {
 
@@ -10,7 +10,7 @@
 		font-family: 'Source Sans 3';
 		font-style: normal;
 		font-weight: 400;
-		src: url('../fonts/source-sans-3-v19-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+		src: url('/fonts/source-sans-3-v19-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 	}
 	/* source-sans-3-700 - latin */
 	@font-face {
@@ -18,7 +18,7 @@
 		font-family: 'Source Sans 3';
 		font-style: normal;
 		font-weight: 700;
-		src: url('../fonts/source-sans-3-v19-latin-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+		src: url('/fonts/source-sans-3-v19-latin-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 	}
 
 	/* Fonts */
@@ -35,14 +35,14 @@
 		--fs-72: calc(72 / 16 * 1rem);
 
 		/* By purpose */
-		--font-size-topnav: var(--fs-14);
+		--font-size-top-nav: var(--fs-14);
 
 		--font-size-h1: var(--fs-42);
 		--font-size-h2: var(--fs-36);
 		--font-size-h3: var(--fs-24);
 		
 		@media (width >= calc(600 / 16 * 1rem)) { /* Tablet and desktop */
-			--font-size-topnav: var(--fs-16);
+			--font-size-top-nav: var(--fs-16);
 
 			--font-size-h1: var(--fs-72);
 			--font-size-h2: var(--fs-48);
@@ -57,18 +57,20 @@
 	:root {
 
 		/* By Colours */
+		--c-transparent: transparent;
 		--c-white: hsl(0, 0%, 100%);
 		--c-gray-dark: hsl(233, 14%, 25%);
-		--c-purple: hsl(232, 58%, 55%);
+		--c-indigo: hsl(232, 58%, 55%);
 		--c-teal: hsl(180, 100%, 42%);
 		--c-magenta: hsl(320, 85%, 41%);
-		--c-transparent: transparent;
-
+		--c-yellow: hsl(49, 99%, 59%);
+		
 		/* By Purpose */
-		--color-background: var(--c-white);
+		--color-main-bg: var(--c-white);
 		--color-text-dark: var(--c-gray-dark);
 		--color-text-light: var(--c-white);
-		--color-hero-bg: var(--c-purple);
+		--color-header-bg: var(--c-indigo);
+		--color-hero-bg: var(--c-indigo);
 		--color-button-primary-bg: var(--c-teal);
 		--color-button-primary-text: var(--c-gray-dark);
 		--color-button-secondary-bg: var(--c-transparent);
@@ -79,6 +81,11 @@
 
 
 	/* Basic reset/boilerplate styles */
+
+	body {
+		background-color: var(--color-main-bg);
+		padding-block-end: 50vh; /* Temporary - remove at end of project */
+	}
 
 	*,
 	*::before,
@@ -99,6 +106,12 @@
 	svg {
 		display: block;
 		max-width: 100%;
+	}
+
+	ul,ol,dl,li {
+		
+		padding: 0;
+		list-style-type: none;
 	}
 
 
@@ -125,28 +138,174 @@
 	h3 {
 		font-size: var(--font-size-h3);
 	}
+}
 
+@layer layout {
 
 	/* Layout */
 
 	.container {
 		/* Mobile first */
 		width: min(calc(100% - 48px), calc(1200 / 16 * 1rem));
+		
 		/* This simulates the use of min-width and max-width in a single declaration */
 		margin-inline: auto; /* Set left and right margins only */
+		overflow: hidden;
+	}
+
+
+	/* Main Header */
+
+	.header {
+
+		background: var(--color-header-bg) url("/img/unicorn_web.svg") no-repeat;
+		background-size: 50%;
+		background-position: 50% 20%;
+		transition: background .2s ease-in-out;
+		color: var(--light-text);
+		
+		padding: 0 0 80px 0;
+
+		@media (min-width: 700px) {
+			background-size: 26%;
+			background-position: 75% 65%;
+			min-height: 682px;
+
+			padding: 0 0 80px 0;
+		}
+
+		.header__header-info {
+			line-height: 100%;
+			color: var(--color-text-light);
+
+			padding-block-start: 225px;
+
+			@media (min-width: 700px) {
+				padding-block-start: unset;
+			}
+
+		}
+
+		.marketing-title {
+			word-wrap: normal !important;
+			text-wrap: normal !important;
+		}
+
+		.button-group {
+
+			a:first-child {
+				margin-left: 0;
+			}
+		}
+
 	}
 
 }
  
 @layer components {
 
+	/* Screen reader skip link */
+
+	.skip {
+	
+		&.skip:focus {
+			background: var(--c-white);
+			border: 1px solid;
+			padding: .5em;
+
+			left: unset;
+			width: unset;
+			height: unset;
+		}
+	}
+
+	/* Top Nav */
+
+	.top-nav {
+
+		background-color: var(--color-header-bg);
+		background-color: var(--c-transparent);
+
+		/* height: u.rem(76); */
+		height: calc(44 / 16 * 1rem);
+		border-bottom: 1px solid var(--body-text-color);
+		/* margin-bottom: u.rem(80); */
+		margin-bottom: calc(80 / 16 * 1rem);
+		justify-content: space-between;
+
+		@media (min-width: 700px) {
+			height: calc(76 / 16 * 1rem);
+		}
+
+		.top-nav__container {
+			
+		}
+
+		.top-nav__home-link {
+
+			height: 100%;
+			align-items: center;
+
+			transition: opacity .2s ease-in-out;
+			opacity: 1;
+
+			&:hover {
+				opacity: 0.8;
+			}
+		} 
+
+		.top-nav__logo {
+			min-width: 100px;
+			max-width: 100%;
+			align-self: center;
+			padding-right: 20px;
+		}
+
+		.top-nav__menu-list {
+
+			height: 100%;
+			justify-content: space-between;
+			align-items: center;
+			/* gap: u.rem(40); */
+			gap: calc(20 / 16 * 1rem);
+			list-style-type: none;
+
+			.menu-list__item {
+				display: inline-block;
+				align-items: center;
+				display: flex;
+
+				.menu-list__link {
+					
+					color: var(--color-text-light);
+					font-family: 'Source Sans 3' sans-serif;
+					font-size: var(--font-size-top-nav);
+					font-weight: 700;
+					text-transform: uppercase;
+					letter-spacing: 0.05em;
+					
+					height: 100%;
+					vertical-align: middle;
+					/* display: inline-block; */
+					/* align-items: center; */
+
+					&:hover,
+					&:focus {
+						color: var(--c-yellow);
+					}
+				}
+			}
+		}
+	}
+
 }
 
-@utilities {
+@layer utilities {
 	
 	/* Helpers */
 
-	.visually-hidden {
+	.visually-hidden,
+	.sr-only {
 		position: absolute;
 		left:     -10000px;
 		top:      auto;
@@ -154,4 +313,13 @@
 		height:   1px;
 		overflow: hidden;
 	}
+
+	.flex {
+		display: flex;
+	}
+
+	.grid {
+		display: grid;
+	}
+
 }

@@ -21,6 +21,7 @@
 		src: url('/fonts/source-sans-3-v19-latin-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 	}
 
+
 	/* Fonts */
 
 	:root {
@@ -80,6 +81,19 @@
 	}
 
 
+	/* Breakpoints */
+
+	:root {
+
+		/* ! These won't work inside a media query without a sass mixin ! */
+
+		--screen-large: 1200px; 
+		--screen-desktop: 900px;
+		--screen-tablet: 600px;
+		--screen-mobile: 450px;
+	}
+
+
 	/* Basic reset/boilerplate styles */
 
 	body {
@@ -106,6 +120,7 @@
 	svg {
 		display: block;
 		max-width: 100%;
+		height: auto;
 	}
 
 	ul,ol,dl,li {
@@ -159,14 +174,14 @@
 	.header {
 
 		background: var(--color-header-bg) url("/img/unicorn_web.svg") no-repeat;
-		background-size: 50%;
+		background-size: 199.89px 205px;
 		background-position: 50% 20%;
 		transition: background .2s ease-in-out;
 		color: var(--light-text);
 		
 		padding: 0 0 80px 0;
 
-		@media (min-width: 700px) {
+		@media (min-width: 600px) {
 			background-size: 26%;
 			background-position: 75% 65%;
 			min-height: 682px;
@@ -178,7 +193,7 @@
 			line-height: 100%;
 			color: var(--color-text-light);
 
-			padding-block-start: 225px;
+			padding-block-start: 175px; /* 225 */
 
 			@media (min-width: 700px) {
 				padding-block-start: unset;
@@ -231,20 +246,24 @@
 		border-bottom: 1px solid var(--body-text-color);
 		/* margin-bottom: u.rem(80); */
 		margin-bottom: calc(80 / 16 * 1rem);
-		justify-content: space-between;
+		padding-block: 12px;
 
-		@media (min-width: 700px) {
+		display: flex; /* Added via utility class */
+		flex-direction: row;
+		justify-content: space-between; /* Sticks logo to the left, sticks menu to the right */
+
+		@media (width >= calc(600 / 16 * 1rem)) {
 			height: calc(76 / 16 * 1rem);
-		}
-
-		.top-nav__container {
-			
+			padding-block: 20px;
 		}
 
 		.top-nav__home-link {
 
 			height: 100%;
 			align-items: center;
+
+			padding-inline-end: 25px; /* Space inbetween logo and menu - like a margin! */
+			/* margin-block: 20px; Maybe should be REMs... */
 
 			transition: opacity .2s ease-in-out;
 			opacity: 1;
@@ -255,48 +274,119 @@
 		} 
 
 		.top-nav__logo {
-			min-width: 100px;
-			max-width: 100%;
+
+			/* min-width: 70px; Mobile first */
+			/* max-width: 100%; */
+
+			width: min(calc(70 / 16 * 1rem), 100%);
+			height: auto; /* 20px */
+			transition: all .2s ease-in-out;
 			align-self: center;
-			padding-right: 20px;
+
+			@media (width >= calc(600 / 16 * 1rem)) {
+				width: min(calc(128 / 16 * 1rem), 100%);
+			}
+			
 		}
 
 		.top-nav__menu-list {
 
+			display: flex;
+			justify-content: space-around; /* X axis */
+			align-items: stretch; /* Y axis */
 			height: 100%;
-			justify-content: space-between;
-			align-items: center;
-			/* gap: u.rem(40); */
+			/* gap: u.rem(20); - this was the old function that converted to a short version of the below */
 			gap: calc(20 / 16 * 1rem);
 			list-style-type: none;
 
-			.menu-list__item {
-				display: inline-block;
-				align-items: center;
-				display: flex;
+			@media (width >= calc(600 / 16 * 1rem)) { /* Tablet and desktop */
 
+				gap: calc(40 / 16 * 1rem); /* Space inbetween menu links - like a marign! */
+			}
+
+			.menu-list__item {
+
+				display: flex;
+				align-items: center;
+				
 				.menu-list__link {
 					
 					color: var(--color-text-light);
-					font-family: 'Source Sans 3' sans-serif;
+					font-family: 'Source Sans 3', sans-serif;
 					font-size: var(--font-size-top-nav);
 					font-weight: 700;
 					text-transform: uppercase;
 					letter-spacing: 0.05em;
 					
-					height: 100%;
 					vertical-align: middle;
 					/* display: inline-block; */
 					/* align-items: center; */
 
 					&:hover,
 					&:focus {
-						color: var(--c-yellow);
+						/* color: var(--c-yellow); */
+						text-decoration: underline;
+						text-decoration-thickness: 2px;
+						text-underline-offset: 4px;
 					}
 				}
 			}
 		}
 	}
+
+
+	/* Buttons */
+
+	.btn {
+		box-sizing: border-box;
+		text-align: center;
+		/* padding: u.rem(8) u.rem(20); */
+		padding: calc(8 / 16 * 1rem) calc(20 / 16 * 1rem);
+		/* margin: u.rem(10) u.rem(10); */
+		margin: calc(10 / 16 * 1rem);
+		display: inline-block;
+		border-radius: calc(25 / 16 * 1rem);
+	}
+
+	.btn-primary {
+		background-color: var(--c-teal);
+		/* background: red; */
+		font-size: u.rem(18);
+		font-weight: 700;
+		text-transform: uppercase;
+		@extend .btn--pill;
+		border: 2px solid var(--c-teal);
+
+		&:hover {
+				color: var(--c-yellow);
+		}
+	}
+
+	.btn-secondary {
+		border: 2px solid var(--c-white);
+		text-transform: uppercase;
+		color: var(--color-light-text);
+		@extend .btn--pill;
+
+		&:hover,
+		&:focus {
+			color: var(--c-yellow);
+			border-color: var(--c-yellow);
+		}
+	}
+
+	.btn--light {
+		background-color: var(--c-white);
+		color: var(--body-text);
+		border-color: var(--c-white);
+
+		&:hover,
+		&:focus {
+			background: var(--c-yellow);
+			color: var(--body-text);
+		}
+	}
+
 
 }
 

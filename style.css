@@ -1,5 +1,9 @@
 @layer globals, layout, components, utilities;
 
+		/* padding: u.rem(8) u.rem(20); */
+		/* margin: u.rem(10) u.rem(10); */
+		/* Examples of Jessica's utility conversion function for relative EM/REM sizes */
+
 @layer globals {
 
 	/* Custom Fonts */
@@ -78,6 +82,7 @@
 		--color-button-secondary-border: var(--c-white);
 		--color-button-secondary-text: var(--c-white);
 		--color-full-width-bg: var(--c-magenta);
+		--color-shadow: hsla(233, 14%, 25%, 50%);
 	}
 
 
@@ -98,6 +103,7 @@
 
 	body {
 		background-color: var(--color-main-bg);
+		/* background-color: var(--c-indigo); */
 		padding-block-end: 50vh; /* Temporary - remove at end of project */
 	}
 
@@ -173,20 +179,20 @@
 
 	.header {
 
-		background: var(--color-header-bg) url("/img/unicorn_web.svg") no-repeat;
+		background-color: var(--color-header-bg);
+		background-image: url("img/unicorn_web.svg");
+		background-repeat: no-repeat;
 		background-size: 199.89px 205px;
 		background-position: 50% 20%;
 		transition: background .2s ease-in-out;
-		color: var(--light-text);
+		color: var(--color-text-light);
 		
-		padding: 0 0 80px 0;
+		padding: 0 0 calc(80 / 16 * 1rem) 0;
 
 		@media (min-width: 600px) {
 			background-size: 26%;
 			background-position: 75% 65%;
 			min-height: 682px;
-
-			padding: 0 0 80px 0;
 		}
 
 		.header__header-info {
@@ -208,11 +214,17 @@
 
 		.button-group {
 
+			margin: 1em 0;
+
 			a:first-child {
 				margin-left: 0;
 			}
 		}
 
+	}
+
+	.hero {
+		
 	}
 
 }
@@ -240,21 +252,22 @@
 
 		background-color: var(--color-header-bg);
 		background-color: var(--c-transparent);
-
-		/* height: u.rem(76); */
-		height: calc(44 / 16 * 1rem);
 		border-bottom: 1px solid var(--body-text-color);
-		/* margin-bottom: u.rem(80); */
+		box-shadow: 0 3px 5px var(--color-shadow);
+
+		height: calc(44 / 16 * 1rem);
 		margin-bottom: calc(80 / 16 * 1rem);
 		padding-block: 12px;
-
-		display: flex; /* Added via utility class */
-		flex-direction: row;
-		justify-content: space-between; /* Sticks logo to the left, sticks menu to the right */
 
 		@media (width >= calc(600 / 16 * 1rem)) {
 			height: calc(76 / 16 * 1rem);
 			padding-block: 20px;
+		}
+
+		.container {
+			display: flex; /* Added via utility class */
+			flex-direction: row;
+			justify-content: space-between; /* Sticks logo to the left, sticks menu to the right */
 		}
 
 		.top-nav__home-link {
@@ -286,7 +299,6 @@
 			@media (width >= calc(600 / 16 * 1rem)) {
 				width: min(calc(128 / 16 * 1rem), 100%);
 			}
-			
 		}
 
 		.top-nav__menu-list {
@@ -298,6 +310,7 @@
 			/* gap: u.rem(20); - this was the old function that converted to a short version of the below */
 			gap: calc(20 / 16 * 1rem);
 			list-style-type: none;
+			z-index: 1;
 
 			@media (width >= calc(600 / 16 * 1rem)) { /* Tablet and desktop */
 
@@ -317,17 +330,14 @@
 					font-weight: 700;
 					text-transform: uppercase;
 					letter-spacing: 0.05em;
-					
 					vertical-align: middle;
-					/* display: inline-block; */
-					/* align-items: center; */
 
 					&:hover,
 					&:focus {
 						/* color: var(--c-yellow); */
 						text-decoration: underline;
 						text-decoration-thickness: 2px;
-						text-underline-offset: 4px;
+						text-underline-offset: 5px;
 					}
 				}
 			}
@@ -349,24 +359,24 @@
 	}
 
 	.btn-primary {
+		
 		background-color: var(--c-teal);
-		/* background: red; */
-		font-size: u.rem(18);
+		font-family: "Source Sans 3", "Open Sans", sans-serif;
+		font-size: calc(18 / 16 * 1rem);
 		font-weight: 700;
 		text-transform: uppercase;
-		@extend .btn--pill;
+		color: var(--color-button-primary-text);
 		border: 2px solid var(--c-teal);
 
 		&:hover {
-				color: var(--c-yellow);
+			color: var(--c-yellow);
 		}
 	}
 
 	.btn-secondary {
 		border: 2px solid var(--c-white);
 		text-transform: uppercase;
-		color: var(--color-light-text);
-		@extend .btn--pill;
+		color: var(--color-button-secondary-text);
 
 		&:hover,
 		&:focus {
@@ -375,20 +385,20 @@
 		}
 	}
 
-	.btn--light {
+	.btn-light {
 		background-color: var(--c-white);
-		color: var(--body-text);
+		color: var(--color-text-light);
 		border-color: var(--c-white);
 
 		&:hover,
 		&:focus {
 			background: var(--c-yellow);
-			color: var(--body-text);
+			color: var(--color-text-light);
 		}
 	}
 
-
 }
+
 
 @layer utilities {
 	

@@ -20,21 +20,25 @@
 
 		<h2 class="visually-hidden">Mythos: Angel Investment Specialists</h2>
 
-		<nav class="top-nav primary-nav container top-nav__container flex" role="navigation" aria-label="main menu">
+		<nav class="top-nav primary-nav flex" role="navigation" aria-label="main menu">
 			
 			<a href="#main" class="skip visually-hidden sr-only sr-label">Skip to main content</a>
 
-			<a href="/" title="Main" class="top-nav__home-link flex">
-				<img src="/img/logo-mythos.svg" class="top-nav__logo" alt="Mythos: Angel Investment Specialists" width="128" height="36" />
-			</a>
+			<div class="container">
 
-			<ul class="top-nav__menu-list flex">
-					<li class="menu-list__item"><a href="#" title="Features" class="menu-list__link">Features</a></li>
-					<li class="menu-list__item"><a href="#" title="Pricing" class="menu-list__link">Pricing</a></li>
-					<li class="menu-list__item"><a href="#" title="About" class="menu-list__link">About</a></li>
-			</ul>
+				<a href="/" title="Main" class="top-nav__home-link flex">
+					<img src="/img/logo-mythos.svg" class="top-nav__logo" alt="Mythos: Angel Investment Specialists" width="128" height="36" />
+				</a>
 
-    </nav>
+				<ul class="top-nav__menu-list flex">
+						<li class="menu-list__item"><a href="#" title="Features" class="menu-list__link">Features</a></li>
+						<li class="menu-list__item"><a href="#" title="Pricing" class="menu-list__link">Pricing</a></li>
+						<li class="menu-list__item"><a href="#" title="About" class="menu-list__link">About</a></li>
+				</ul>
+
+			</div>
+
+		</nav>
 
 		<div class="header__header-info container">
 			
@@ -48,8 +52,8 @@
 					</p>
 
 					<div class="button-group">
-						<a href="#" title="Free Trial" class="btn btn-primary btn--pill">Free Trial</a>
-						<a href="#" title="Pricing" class="btn btn-secondary btn--pill">Pricing</a>
+						<a href="#" title="Free Trial" class="btn btn-primary">Free Trial</a>
+						<a href="#" title="Pricing" class="btn btn-secondary">Pricing</a>
 					</div>
 
 			</div>
@@ -61,13 +65,122 @@
 
 	<main id="main">
 
-		<div class="container">
+		<article id="skip-target">
 
-			<h1>Lorem ipsum dolor sit amet.</h1>
+			<section class="hero">
 
-			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit soluta eveniet dolores quod unde quo, optio, quaerat modi enim adipisci nihil eligendi quia sunt exercitationem sed, dolorem explicabo delectus totam.</p>
-		
-		</div>
+				<div class="container hero__container">
+
+
+				</div>
+
+			</section>
+
+			<section class="main__featured-benefits">
+					<h2 class="sr-only">Featured benefits:</h2>
+
+					<ul class="wrapper flex">
+
+						<li>
+								<i class="icon icon--large">Icon</i>
+								<details open>
+									<summary>
+											<h3>AI-powered matching.</h3>
+									</summary>
+
+									<p>
+											Phasellus ac mi magna. Sed scelerisque, turpis vitae
+											consequat vehicula, sem turpis pretium tellus, tempor
+											posuere turpis est ac velit.
+									</p>
+								</details>
+						</li>
+
+						<li>
+								<i class="icon icon--large">Icon</i>
+								<details open>
+									<summary><h3>Immediate notifications</h3></summary>
+									<p>
+											Mauris id vestibulum metus, ut pretium lacus.
+											Phasellus ac mi magna. Sed scelerisque, turpis vitae
+											consequat vehicula, sem turpis pretium tellus, tempor
+											posuere turpis est ac velit.
+									</p>
+								</details>
+						</li>
+
+						<li>
+								<i class="icon icon--large">Icon</i>
+								<details open>
+									<summary><h3>Protected payments</h3></summary>
+									<p>
+											Lorem ipsum dolor sit amet, consectetur adipiscing
+											elit. Mauris id vestibulum metus, ut pretium lacus.
+									</p>
+								</details>
+						</li>
+					</ul>
+			</section>
+
+			<section class="main__full-width-marketing-feature" data-theme="magenta">
+					<div class="wrapper">
+
+						<h2>Angel investment matching in real time.</h2>
+						<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+								Mauris id vestibulum metus, ut pretium lacus. Phasellus ac
+								mi magna. Sed scelerisque, turpis vitae.
+						</p>
+
+						<figure>
+								<img src="app/img/laptop-dashboard.svg" alt="Graph displayed on laptop" />
+								<figcaption class="sr-only">
+									Virtual dashboard displayed on laptop
+								</figcaption>
+						</figure>
+						
+					</div>
+			</section>
+
+			<section class="main__testimonials">
+					<div class="wrapper">
+						<h2 class="sr-only">Testimonials</h2>
+
+						<blockquote>
+								<p>
+									<i class="icon icon--large">icon</i>
+									When I first started Evermindly, it was a bootstrapped
+									business. However, we were quickly running out of money.
+									Thanks to Mythos, we were matched with investors for our
+									seed funding and have now secured a Series A round!
+								</p>
+						</blockquote>
+
+						<div class="name-plate">
+								<img src="app/img/janice-hsu.jpg" alt="Janice Hsu" />
+								<dl class="person-details flex">
+									<dt>Janice Hsu</dt>
+									<dd>Founder and CEO, Evermindly</dd>
+								</dl>
+						</div>
+					</div>
+			</section>
+
+			<section
+					class="main__marketing-cta main__marketing-cta--full-width">
+					<div class="wrapper">
+						<h2 class="title">
+								Get started with <span class="brand">Mythos</span> today
+						</h2>
+						<h3 class="marketing-strap">
+								Find the next undiscovered unicorn with a free 14-day
+								trial.
+						</h3>
+						<a href="#" title="Free Trial" class="btn btn-primary btn--light">Free Trial</a>
+					</div>
+			</section>
+
+		</article>
 
 	</main>
 

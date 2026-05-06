@@ -33,6 +33,7 @@
 		/* By pixel sizes */
 		--fs-14: calc(14 / 16 * 1rem);
 		--fs-16: calc(16 / 16 * 1rem);
+		--fs-16: calc(18 / 16 * 1rem);
 		--fs-24: calc(24 / 16 * 1rem);
 		--fs-36: calc(36 / 16 * 1rem);
 		--fs-42: calc(42 / 16 * 1rem);
@@ -47,6 +48,7 @@
 		--font-size-h3: var(--fs-24);
 
 		--font-size-paragraph: var();
+		--font-size-button: var(--fs-18);
 		
 		@media (width >= calc(600 / 16 * 1rem)) { /* Tablet and desktop */
 			--font-size-top-nav: var(--fs-16);
@@ -70,6 +72,8 @@
 		--c-indigo: hsl(232, 58%, 55%);
 		--c-indigo-dark: hsla(232, 58%, 25%, 50%);
 		--c-teal: hsl(180, 100%, 42%);
+		/* --c-teal-light: hsl(180, 100%, 42%); */
+		--c-teal-dark: hsl(180, 100%, 25%);
 		--c-magenta: hsl(320, 85%, 41%);
 		--c-yellow: hsl(49, 99%, 59%);
 		
@@ -80,10 +84,15 @@
 		--color-header-bg: var(--c-indigo);
 		--color-hero-bg: var(--c-indigo);
 		--color-button-primary-bg: var(--c-teal);
+		--color-button-gradient: linear-gradient(to bottom, var(--c-teal), var(--c-teal-dark));
+		--color-button-gradient-reverse: linear-gradient(to bottom, var(--c-teal-dark), var(--c-teal));
+		--color-button-gradient-hover: linear-gradient(to bottom, hsl(180, 100%, 30%), hsl(180, 100%, 20%));
 		--color-button-primary-text: var(--c-gray-dark);
 		--color-button-secondary-bg: var(--c-transparent);
+		--color-button-secondary-bg-hover: var(--c-white);
 		--color-button-secondary-border: var(--c-white);
 		--color-button-secondary-text: var(--c-white);
+		--color-button-secondary-text-hover: var(--color-hero-bg);
 		--color-full-width-bg: var(--c-magenta);
 		--color-shadow: hsla(233, 14%, 25%, 50%); /* Purple tinted shadow */
 
@@ -287,9 +296,11 @@
 		.hero__buttons {
 
 			margin-top: 40px;
+			/* justify-content: space-around; */
+			gap: 20px;
 
 			.button {
-				margin-right: 25px;
+				/* margin-right: 18px; */
 			}
 		}
 	}
@@ -418,43 +429,66 @@
 
 	.button {
 
+		box-shadow: 0 2px 4px var(--c-indigo-dark);
 		box-sizing: border-box;
 		display: inline-block;
-		border-radius: calc(25 / 16 * 1rem);
+		border-radius: calc(24 / 16 * 1rem);
 
+		transition: 150ms ease-in-out;
+		transition-property: background, background-color, background-image, border;
+		cursor: pointer;
+
+		font-family: "Source Sans 3", "Open Sans", sans-serif;
+		font-size: var(--font-size-button);
+		font-weight: 700;
+		line-height: 1;
 		text-transform: uppercase;
 		text-align: center;
+		text-wrap: nowrap;
+		letter-spacing: 0.05em;
 
-		padding: calc(8 / 16 * 1rem) calc(20 / 16 * 1rem);
+		padding: calc(12 / 16 * 1rem) calc(16 / 16 * 1rem);
 		margin-bottom: calc(10 / 16 * 1rem);
-	}
 
-	.btn-primary {
-		
-		background-color: var(--c-teal);
-		font-family: "Source Sans 3", "Open Sans", sans-serif;
-		font-size: calc(18 / 16 * 1rem);
-		font-weight: 700;
-		color: var(--color-button-primary-text);
-		border: 2px solid var(--c-teal);
+		@media (width >= 600) {
+			padding: calc(8 / 16 * 1rem) calc(20 / 16 * 1rem);
+		}
 
-		&:hover {
-			color: var(--c-yellow);
+		&.button--primary {
+			background-color: var(--c-teal); /* fallback */
+			background-image: var(--color-button-gradient);
+
+			color: var(--color-button-primary-text);
+			/* border: 2px solid var(--c-transparent); only if using flat design */
+			border: none;
+			padding: calc(14 / 16 * 1rem) calc(16 / 16 * 1rem); /* Larger padding to account for missing border-stroke */
+
+			&:hover {
+				background-color: var(--c-teal-dark); /* fallback */
+				background-image: var(--color-button-gradient-hover);
+				color: var(--c-white);
+			}
+
+			&:active {
+				background-image: var(--color-button-gradient-reverse);
+			}
+		}
+
+		&.button--secondary {
+
+			background-color: var(--color-button-secondary-bg);
+			border: 2px solid var(--color-button-secondary-border);
+			color: var(--color-button-secondary-text);
+
+			&:hover,
+			&:focus {
+				background-color: var(--color-button-secondary-bg-hover);
+				color: var(--color-button-secondary-text-hover);
+			}
 		}
 	}
 
-	.btn-secondary {
-		border: 2px solid var(--c-white);
-		color: var(--color-button-secondary-text);
-
-		&:hover,
-		&:focus {
-			color: var(--c-yellow);
-			border-color: var(--c-yellow);
-		}
-	}
-
-	.btn-light {
+	.button-inverse-white {
 		background-color: var(--c-white);
 		color: var(--color-text-light);
 		border-color: var(--c-white);
@@ -465,9 +499,7 @@
 			color: var(--color-text-light);
 		}
 	}
-
 }
-
 
 @layer utilities {
 	

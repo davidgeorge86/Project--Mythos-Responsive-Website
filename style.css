@@ -72,8 +72,9 @@
 		--c-indigo: hsl(232, 58%, 55%);
 		--c-indigo-dark: hsla(232, 58%, 25%, 50%);
 		--c-teal: hsl(180, 100%, 42%);
+		--c-teal-dark: hsl(180, 100%, 10%);
 		/* --c-teal-light: hsl(180, 100%, 42%); */
-		--c-teal-dark: hsl(180, 100%, 25%);
+		--c-teal-dark-gradient: hsl(180, 100%, 25%);
 		--c-magenta: hsl(320, 85%, 41%);
 		--c-yellow: hsl(49, 99%, 59%);
 		
@@ -84,10 +85,10 @@
 		--color-header-bg: var(--c-indigo);
 		--color-hero-bg: var(--c-indigo);
 		--color-button-primary-bg: var(--c-teal);
-		--color-button-gradient: linear-gradient(to bottom, var(--c-teal), var(--c-teal-dark));
-		--color-button-gradient-reverse: linear-gradient(to bottom, var(--c-teal-dark), var(--c-teal));
+		--color-button-gradient: linear-gradient(to bottom, var(--c-teal), var(--c-teal-dark-gradient));
+		--color-button-gradient-reverse: linear-gradient(to bottom, var(--c-teal-dark-gradient), var(--c-teal));
 		--color-button-gradient-hover: linear-gradient(to bottom, hsl(180, 100%, 30%), hsl(180, 100%, 20%));
-		--color-button-primary-text: var(--c-gray-dark);
+		--color-button-primary-text: var(--c-teal-dark);
 		--color-button-secondary-bg: var(--c-transparent);
 		--color-button-secondary-bg-hover: var(--c-white);
 		--color-button-secondary-border: var(--c-white);
@@ -162,6 +163,7 @@
 
 	h1, h2, h3, .h1,.h2,.h3 {
 		line-height: 1.1;
+		text-wrap: balance;
 	}
 
 	h1,.h1 {
@@ -176,8 +178,10 @@
 		font-size: var(--font-size-h3);
 	}
 
-	p {
+	p,
+	.paragraph {
 		font-size: calc(18 / 16 * 1rem); /* 18px */
+		text-wrap: balance;
 
 		&.medium {
 			font-size: calc(20 / 16 * 1rem); /* 18px */
@@ -236,30 +240,38 @@
 		color: var(--color-text-light);
 		
 		.hero__container {
+			/* Hero Wrapper */
 			/* padding-block: calc(30 / 16 * 1rem); */
-			display: flow-root; /* Force block level formatting context */
+			/* display: flow-root; */ /* Force block level formatting context */
+			display: grid; /* Also set as HTML utility class */
 			padding-block: calc(30 / 16 * 1rem) calc(60 / 16 * 1rem);
 
-			@media (width >= calc(600 / 16 * 1rem) ) {
+			@media (width >= calc(1000 / 16 * 1rem) ) { /* Desktop only */
+				grid-template-columns: 6fr 5fr;
+				align-items: center;
 				padding-block: calc(40 / 16 * 1rem) calc(80 / 16 * 1rem);
 			}
 		}
 
 		.hero__image {
-			/* max-width: 100%; */
 			
 			transition: all .2s ease-in-out;
-
-			margin-inline: auto;
 			
-			margin-block-end: calc(40 / 16 * 1rem);
-
-			@media (width <= calc(450 / 16 * 1rem) ) {
+			@media (width <= calc(450 / 16 * 1rem) ) { /* Mobile query */
 				max-width: calc(200 / 16 * 1rem);
+				justify-self: center; /* OR margin-inline: auto; */
+				margin-block-end: calc(40 / 16 * 1rem);
 			}
 
 			@media (width >= calc(600 / 16 * 1rem) ) {
 				max-width: calc(483 / 16 * 1rem);
+				justify-self: center;
+			}
+
+			@media (width >= calc(1000 / 16 * 1rem) ) { /* Desktop query */
+				
+				order: 2;
+				justify-self: end; /* Align right side */
 			}
 		}
 
@@ -269,14 +281,13 @@
 
 		.hero__marketing-title {
 
+			word-wrap: auto;
+			text-wrap: balance;
 			margin-block-end: 12px;
 
 			@media (width >= calc(600 / 16 * 1rem) ) {
 				margin-block-end: 20px;
 			}
-
-			word-wrap: normal !important;
-			text-wrap: normal !important;
 		}
 
 		.hero__content {
@@ -284,6 +295,8 @@
 			/* line-height: 100%; */
 			color: var(--color-text-light);
 			margin-block-end: 40px;
+			max-width: 40ch; /* Character unit */
+			text-wrap: auto;
 
 			/* padding-block-start: 175px; 225 */
 

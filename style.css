@@ -186,6 +186,10 @@
 
 		&.medium {
 			font-size: calc(20 / 16 * 1rem); /* 18px */
+
+			@media (width >= calc(600 / 16 * 1rem)) { /* Tablet and Desktop */
+				font-size: calc(24 / 16 * 1rem); 
+			}
 		}
 
 		&.large {
@@ -431,6 +435,39 @@
 				line-height: 1.3;
 				max-width: 40ch;
 			}
+		}
+	}
+
+
+	/* Full Width Marketing feature (laptop) */
+
+	.fw-feature {
+
+		background-color: var(--color-full-width-bg);
+		color: var(--color-text-light);
+		text-align: center;
+		padding-block: 60px;
+
+		.fw-feature__container {
+			display: grid;
+			justify-items: center;
+		}
+
+		.fw-feature__title {
+			
+		}
+
+		.fw-feature__description {
+			max-width: 80ch;
+			margin-block-start: 20px;
+			margin-block-end: 40px;
+			/* margin-inline: auto; */
+		}
+
+		.fw-feature__image {
+			width: 100%;
+			max-width: calc(792 / 16 * 1rem);
+
 		}
 	}
 }

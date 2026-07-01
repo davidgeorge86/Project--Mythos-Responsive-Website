@@ -31,6 +31,7 @@
 		--fs-16: calc(16 / 16 * 1rem);
 		--fs-18: calc(18 / 16 * 1rem);
 		--fs-20: calc(20 / 16 * 1rem);
+		--fs-22: calc(22 / 16 * 1rem);
 		--fs-24: calc(24 / 16 * 1rem);
 		--fs-36: calc(36 / 16 * 1rem);
 		--fs-42: calc(42 / 16 * 1rem);
@@ -69,6 +70,7 @@
 
 		/* By Colours */
 		--c-transparent: transparent;
+		--c-black: #000;
 		--c-white: hsl(0, 0%, 100%);
 		--c-gray-dark: hsl(233, 14%, 25%);
 		--c-indigo: hsl(232, 58%, 55%);
@@ -82,11 +84,12 @@
 
 		/* By Purpose */
 		--color-main-bg: var(--c-white);
-		--color-text-dark: var(--c-gray-dark);
-		--color-text-light: var(--c-white);
 		--color-header-bg: var(--c-indigo);
 		--color-hero-bg: var(--c-indigo);
 		--color-full-width-bg: var(--c-magenta);
+
+		--color-text-dark: var(--c-gray-dark);
+		--color-text-light: var(--c-white);
 
 		--color-shadow: hsla(233, 14%, 25%, 50%); /* Purple tinted shadow */
 		--color-glow: oklch(from var(--c-teal) calc(l - 0.1) c h / 0.6); /* Green glow */
@@ -112,6 +115,13 @@
 		--color-cta-gradient-1: var(--c-gray-dark);
 		--color-cta-gradient-2: var(--c-indigo);
 		--color-cta-gradient-3: var(--c-teal);
+
+		--color-link: var(--c-teal);
+		--color-link-visited: var(--c-magenta);
+		--color-link-active: var(--c-yellow);
+
+		--color-footer-link: var(--c-gray-dark);
+		--color-footer-link-hover: var(--c-teal);
 		
 		--button-shadow: 0 2px 4px var(--color-shadow);
 		--button-glow: 0 3px 5px var(--color-glow);
@@ -143,7 +153,7 @@
 	body {
 		background-color: var(--color-main-bg);
 		/* background-color: var(--c-indigo); - used for troubleshooting */
-		padding-block-end: 50vh; /* Temporary - remove at end of project */
+		/* padding-block-end: 50vh; Temporary - remove at end of project */
 	}
 
 	*,
@@ -278,6 +288,15 @@
 		box-shadow: 0 5px 5px -4px var(--c-gray-dark);
 	}
 
+	.hover-fade {
+		opacity: 1;
+		transition: opacity .2s ease-out;
+
+		&:hover {
+			opacity: 0.8;
+		}
+	}
+
 }
 
 @layer layout {
@@ -313,6 +332,87 @@
 			/* background-size: 26%;
 			background-position: 75% 65%; */
 			/* min-height: 682px; */
+		}
+	}
+
+	/* Footer */
+
+	.footer {
+		display: flex;
+		/* flex-direction: column; */
+		flex-flow: column wrap;
+		margin-block: calc(60 / 16 * 1rem);
+		/* margin-inline: calc(24 / 16 * 1rem); */
+
+		@media (width >= calc(600 / 16 * 1rem)) {
+			flex-flow: row nowrap;
+			margin-block: calc(80 / 16 * 1rem);
+			/* margin-inline: calc(120 / 16 * 1rem); */
+		}
+
+		.footer__company-meta-data {
+
+			margin-block-end: calc(40 / 16 * 1rem);
+
+			.footer__copyright {
+				font-size: inhert; /* 18 pixels */
+			}
+
+		}
+
+		.footer__homelink {
+			display: block;
+			width: fit-content;
+		}
+
+		.footer__logo {
+			width: calc(128 / 16 * 1rem);
+			margin-block-end: 10px;
+		}
+
+		.footer__column {
+
+		}
+
+		.footer__title {
+			
+			font-size: var(--fs-22);
+			font-weight: 700;
+			margin-block-end: 6px;
+		}
+
+		.footer__links {
+			list-style: none;
+			padding: 0;
+			display: grid;
+			/* flex-direction: column; */
+			gap: 6px;
+		}
+
+		.footer__item {
+
+		}
+
+		.footer__link {
+			font-size: var(--fs-18);
+			color: var(--color-link);
+			color: var(--color-footer-link);
+			display: block;
+			text-indent: 0;
+			transition: text-indent .1s ease-out;
+
+			&:visited {
+				color var(--color-link-visited);
+			}
+
+			&:hover {
+				color: var(--color-footer-link-hover);
+				text-indent: .7rem;
+			}
+
+			&:active {
+				color: var(--color-link-active);
+			}
 		}
 	}
 
@@ -665,6 +765,7 @@
 		}
 	}
 
+
 	/* Top Nav */
 
 	.top-nav {
@@ -697,13 +798,6 @@
 
 			padding-inline-end: 25px; /* Space inbetween logo and menu - like a margin! */
 			/* margin-block: 20px; Maybe should be REMs... */
-
-			transition: opacity .2s ease-out;
-			opacity: 1;
-
-			&:hover {
-				opacity: 0.8;
-			}
 		} 
 
 		.top-nav__logo {
@@ -834,6 +928,12 @@
 					color: var(--color-text-light);
 					border-color: var(--c-teal);
 				}
+
+				&:active {
+					background: var(--c-yellow);
+					border-color: var(--c-yellow);
+					color: var(--c-black);
+				}
 			}
 		}
 
@@ -848,6 +948,12 @@
 			&:focus {
 				background-color: var(--color-button-secondary-bg-hover);
 				color: var(--color-button-secondary-text-hover);
+			}
+
+			&:active {
+				background-color: var(--c-yellow);
+				border-color: var(--c-yellow);
+				color: var(--c-black);
 			}
 		}
 	}

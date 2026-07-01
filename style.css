@@ -87,6 +87,7 @@
 		--color-header-bg: var(--c-indigo);
 		--color-hero-bg: var(--c-indigo);
 		--color-full-width-bg: var(--c-magenta);
+
 		--color-shadow: hsla(233, 14%, 25%, 50%); /* Purple tinted shadow */
 		--color-glow: oklch(from var(--c-teal) calc(l - 0.1) c h / 0.6); /* Green glow */
 
@@ -95,11 +96,19 @@
 		--color-button-gradient-reverse: linear-gradient(to bottom, var(--c-teal-dark-gradient), var(--c-teal));
 		--color-button-gradient-hover: linear-gradient(to bottom, hsl(180, 100%, 40%), hsl(180, 100%, 30%));
 		--color-button-primary-text: var(--c-teal-dark);
+
+			/* Modified primary button*/
+			--color-button-inverse-white-bg: var(--c-white);
+			--color-button-inverse-white-text: var(--c-gray-dark);
+			--color-button-inverse-white-hover: var(--c-yellow);
+			--color-button-inverse-white-border: var(--c-white);
+
 		--color-button-secondary-bg: var(--c-transparent);
 		--color-button-secondary-bg-hover: var(--c-white);
 		--color-button-secondary-border: var(--c-white);
 		--color-button-secondary-text: var(--c-white);
 		--color-button-secondary-text-hover: var(--color-hero-bg);
+
 		--color-cta-gradient-1: var(--c-gray-dark);
 		--color-cta-gradient-2: var(--c-indigo);
 		--color-cta-gradient-3: var(--c-teal);
@@ -661,7 +670,6 @@
 	.top-nav {
 
 		background-color: var(--color-header-bg);
-		/* background-color: var(--c-yellow); */
 		background-image: linear-gradient(to bottom, var(--c-indigo), var(--c-indigo-dark));
 		/* background-color: var(--c-transparent); */
 		border-bottom: 1px solid var(--body-text-color);
@@ -690,7 +698,7 @@
 			padding-inline-end: 25px; /* Space inbetween logo and menu - like a margin! */
 			/* margin-block: 20px; Maybe should be REMs... */
 
-			transition: opacity .2s ease-in-out;
+			transition: opacity .2s ease-out;
 			opacity: 1;
 
 			&:hover {
@@ -741,8 +749,11 @@
 					font-size: var(--font-size-top-nav);
 					font-weight: 700;
 					text-transform: uppercase;
+					text-decoration-thickness: 2px;
+					text-decoration-color: var(--c-transparent);
 					letter-spacing: 0.05em;
 					vertical-align: middle;
+					transition: text-decoration-color .2s ease-out;
 
 					&:hover,
 					&:focus {
@@ -750,6 +761,7 @@
 						text-decoration: underline;
 						text-decoration-thickness: 2px;
 						text-underline-offset: 5px;
+						text-decoration-color: var(--c-white);
 					}
 				}
 			}
@@ -809,6 +821,20 @@
 				background-image: var(--color-button-gradient-reverse);
 				box-shadow: 0 -6px 6px var(--color-button-shadow);
 			}
+
+			&.button-inverse-white {
+				background-image: unset;
+				background-color: var(--color-button-inverse-white-bg);
+				color: var(--color-button-inverse-white-text);
+				border: 2px solid var(--color-button-inverse-white-border);
+
+				&:hover,
+				&:focus {
+					background: var(--c-teal);
+					color: var(--color-text-light);
+					border-color: var(--c-teal);
+				}
+			}
 		}
 
 		&.button-secondary {
@@ -822,19 +848,6 @@
 			&:focus {
 				background-color: var(--color-button-secondary-bg-hover);
 				color: var(--color-button-secondary-text-hover);
-			}
-		}
-
-		&.button-inverse-white {
-			background-color: var(--c-white);
-			background-image: unset;
-			color: var(--color-text-dark);
-			border-color: var(--c-white);
-
-			&:hover,
-			&:focus {
-				background: var(--c-yellow);
-				color: var(--color-text-light);
 			}
 		}
 	}

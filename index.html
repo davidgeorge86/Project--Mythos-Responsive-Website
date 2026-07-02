@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mythos - Responsive Web Design Course | Project by David Beastall</title>
   <link rel="stylesheet" href="/style.css">
-  <script src="/script.js" defer></script>
   <link rel="icon" type="image/png" href="favicon/favicon-96x96.png" sizes="96x96">
   <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
 	<link rel="shortcut icon" href="favicon/favicon.ico">
@@ -207,11 +206,11 @@
 	</main>
 
 
-	<footer class="footer flex" role="footer">
+	<footer class="footer" role="footer">
 
 			<h2 class="visually-hidden">Footer</h2>
 
-			<div class="container footer__container">
+			<div class="container footer__container flex">
 
 				<div class="footer__top footer__company-meta-data">
 					<a href="#" class="footer__homelink hover-fade">
@@ -220,7 +219,7 @@
 					<p class="footer__copyright">Copyright 2026 Mythos, LLC</p>
 				</div>
 
-				<div class="footer__column">
+				<div class="footer__column footer__menu-1">
 
 					<h3 class="footer__title">Company</h3>
 
@@ -233,9 +232,48 @@
 
 				</div>
 
+				<div class="footer__column footer__menu-2">
+
+					<h3 class="footer__title">Support</h3>
+
+					<ul class="footer__links">
+						<li class="footer__item"><a href="#" class="footer__link">Customer Support</a></li>
+						<li class="footer__item"><a href="#" class="footer__link">Community Forum</a></li>
+						<li class="footer__item"><a href="#" class="footer__link">Knowledge Base</a></li>
+					</ul>
+
+				</div>
+
+				<div class="footer__column footer__menu-3 footer__social-menu">
+
+					<h3 class="footer__title">Folllow</h3>
+
+					<ul class="footer__links">
+						<li class="footer__item"><a href="#" class="footer__link"><i class="fa-brands fa-twitter"></i>Twitter</a></li>
+						<li class="footer__item"><a href="#" class="footer__link"><i class="fa-brands fa-facebook"></i>Facebook</a></li>
+						<li class="footer__item"><a href="#" class="footer__link"><i class="fa-brands fa-instagram"></i>Instagram</a></li>
+						<li class="footer__item"><a href="#" class="footer__link"><i class="fa-brands fa-youtube"></i>YouTube</a></li>
+					</ul>
+
+				</div>
+
+				<div class="footer__column footer__menu-4 footer__resources-menu">
+
+					<h3 class="footer__title">Resources</h3>
+
+					<ul class="footer__links">
+						<li class="footer__item"><a href="#" class="footer__link">Privacy Policy</a></li>
+						<li class="footer__item"><a href="#" class="footer__link">Terms of Use</a></li>
+					</ul>
+
+				</div>
+
 			</div>
 
 	</footer>
+
+	<script src="https://kit.fontawesome.com/91fd46eb1d.js" crossorigin="anonymous" defer></script>
+	<script src="/script.js" defer></script>
 	
 </body>
 </html>

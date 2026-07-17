@@ -3,9 +3,7 @@
 @layer globals {
 
 	/* Custom Fonts */
-
-	/* source-sans-3-regular - latin */
-	@font-face {
+	@font-face { /* source-sans-3-regular - latin */
 		font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
 		font-family: 'Source Sans 3';
 		font-style: normal;
@@ -23,7 +21,6 @@
 
 
 	/* Global Font Sizing sets */
-
 	:root {
 
 		/* By pixel sizes */
@@ -65,7 +62,6 @@
 	
 
 	/* Colours */
-
 	:root {
 
 		/* By Colours */
@@ -125,7 +121,6 @@
 		
 		--button-shadow: 0 2px 4px var(--color-shadow);
 		--button-glow: 0 3px 5px var(--color-glow);
-		
 	
 		/* Colour Shift */
 		--purple-shade: oklch(from var(--c-indigo) calc(l - var(--shift)) c h); /* Relative adjustment of lightness value (L) */
@@ -136,11 +131,11 @@
 	/* Media Query Breakpoints */
 	:root {
 
-		/* ! These won't work inside a media query without a sass mixin ! */
+		/* ! These variables won't work inside a media query without a sass mixin; just for reference purposes only ! */
 
-		--screen-large: 1200px; 
-		--screen-desktop: 900px;
-		--screen-tablet: 600px;
+		--screen-large: 1200px;  /* 1200+ large display screens */
+		--screen-desktop: 900px; /* 900 - 1200 desktop */
+		--screen-tablet: 600px; /* 600 - 900 tablet */
 		--screen-mobile: 450px; /* 0 - 450 mobile portrait mode */
 	}
 
@@ -301,9 +296,7 @@
 
 @layer layout {
 
-
 	/* Layout */
-
 	.container {
 		/* Mobile first */
 		width: min(calc(100% - 48px), calc(1200 / 16 * 1rem));
@@ -317,9 +310,7 @@
 		overflow: hidden;
 	}
 
-
 	/* Main Header */
-
 	.header {
 
 		background-color: var(--color-header-bg);
@@ -340,54 +331,59 @@
 	}
 
 	/* Footer */
-
 	.footer {
 				
 		margin-block: calc(60 / 16 * 1rem);
 
 		.footer__container {
 			display: flex;
-			flex-flow: column nowrap;
+			flex-flow: column nowrap; /* Stack the columns by default */
 			justify-content: flex-start;
 			
 			@media (width >= calc(600 / 16 * 1rem)) {
-				flex-flow: row wrap;
+				flex-flow: row wrap; /* Align columns in a row */
 				justify-content: space-between;
 				margin-block: calc(80 / 16 * 1rem);
-				/* margin-inline: calc(120 / 16 * 1rem); */
+			}
+		}
+
+		.footer__column {
+			flex-basis: auto;
+			height: auto;
+			margin-block-end: calc(40 / 16 * 1rem);
+			padding-inline: 10px; /* Prevents inner content from ever touching */
+			overflow: hidden;
+
+			@media (width >= calc(480 / 16 * 1rem) ) {
+				
+				flex-basis: 25%; /* Show 4 columns side by side */
+			}
+
+			@media (width >= calc(900 / 16 * 1rem)) {
+				flex-basis: 20%; /* Show 5 columns side by side */
+				padding-inline: calc(30 / 16 * 1rem);
+				margin-block-end: unset;
 			}
 		}
 
 		.footer__company-meta-data {
 
-			margin-block: calc(40 / 16 * 1rem);
-			order: 5;
+			width: 100%;
+			text-align: center;
+			flex-basis: unset;
 
-			@media (width >= calc(600 / 16 * 1rem)) {
-				width: 100%;
-				clear: both;
-				text-align: center;
-				flex-wrap: wrap;
-				order: 5;
-				margin-block: unset;
+			@media (width <= calc(480 / 16 * 1rem)) {
+				padding-block: calc(40 / 16 * 1rem); /* Extra space above and below the logo for mobile portrait only */
 			}
 
 			@media (width >= calc(900 / 16 * 1rem)) {
-				/* justify-self: flex-start; */
 				flex-wrap: nowrap;
-				order: 0;
-				width: unset;
-				padding-inline-end: calc(30 / 16 * 1rem);
+				flex-basis: 20%;
+				align-self: flex-start; /* Align content to top of column */
 			}
 
 			.footer__homelink {
 				display: flex;
-
-				@media (width >= calc(600 / 16 * 1rem)) {
-					/* text-align: right;
-					justify-content: flex-end; */
-					
-				}
 
 				@media (width >= calc(900 / 16 * 1rem)) {
 					float: right;
@@ -397,18 +393,15 @@
 			.footer__logo {
 				width: calc(128 / 16 * 1rem);
 				margin-block-end: 10px;
-				margin-inline: auto;
+				margin-inline: auto; /* Center the logo */
 			}
 
 			.footer__copyright {
-				font-size: inhert; /* 18 pixels */
+				font-size: inherit; /* 18 pixels */
 				text-align: center;
 				
-				@media (width >= calc(600 / 16 * 1rem)) {
-					text-align: center;
-				}
-
 				@media (width >= calc(900 / 16 * 1rem)) {
+					/* Align the copyright flush to the right inside its column when on a larger device */
 					text-align: right;
 					display: block;
 					clear: both;
@@ -416,49 +409,18 @@
 			}
 		}
 
-		.footer__column {
-			flex-basis: auto;
-			height: auto;
-			margin-block-end: calc(40 / 16 * 1rem);
-			overflow: hidden;
-
-			@media (width >= calc(600 / 16 * 1rem) ) {
-				margin-block-end: 20px;
-				flex-basis: 25%;
-			}
-
-			@media (width >= calc(900 / 16 * 1rem)) {
-				flex-basis: 20%;
-				padding-inline: calc(30 / 16 * 1rem);
-				/* min-width: 230px; */
-			}
-		}
-
-		.footer__resources-menu {
-
-			order: 4;
-
-			@media (width >= calc(600 / 16 * 1rem)) {
-				order: 0;
-			}
-		}
-
 		.footer__title {
-			
 			font-size: var(--fs-22);
 			font-weight: 700;
 			margin-block-end: 14px;
 		}
 
 		.footer__links {
-			list-style: none;
-			padding: 0;
 			display: grid;
-			/* flex-direction: column; */
-			gap: 6px;
+			gap: 6px; /* Vertical space between menu links */
 
 			i {
-				margin-inline-end: 10px;
+				margin-inline-end: 10px; /* The horizontal space between icon and text label */
 			}
 		}
 
@@ -491,9 +453,7 @@
 		}
 	}
 
-
 	/* Hero Section */
-
 	.hero {
 
 		/* Root module styles */
@@ -580,9 +540,7 @@
 		}
 	}
 
-
 	/* Featured Benefits (3-Column) */
-
 	.features {
 
 		padding-block: calc(80 / 16 * 1rem);
@@ -696,9 +654,7 @@
 		}
 	}
 
-
 	/* Full width marketing feature (laptop) */
-
 	.fw-feature {
 
 		background-color: var(--color-full-width-bg);
@@ -711,9 +667,7 @@
 		}
 	}
 
-
 	/* Testimonial Section */
-
 	.testimonial {
 
 		padding-block: 80px;
@@ -783,9 +737,7 @@
 
 	}
 
-
 	/* Marketing Call to Action */
-
 	.marketing-cta {
 
 		background: linear-gradient(to right, 
@@ -826,7 +778,6 @@
 @layer components {
 
 	/* Screen reader skip link */
-
 	.skip {
 	
 		&.skip:focus {
@@ -840,9 +791,7 @@
 		}
 	}
 
-
 	/* Top Nav */
-
 	.top-nav {
 
 		background-color: var(--color-header-bg);
@@ -937,9 +886,7 @@
 		}
 	}
 
-
 	/* Buttons */
-
 	.button {
 
 		box-shadow: var(--color-button-shadow);

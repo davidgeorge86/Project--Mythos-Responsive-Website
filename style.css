@@ -19,7 +19,6 @@
 		src: url('/fonts/source-sans-3-v19-latin-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 	}
 
-
 	/* Global Font Sizing sets */
 	:root {
 
@@ -60,7 +59,6 @@
 		}
 	}
 	
-
 	/* Colours */
 	:root {
 
@@ -447,7 +445,7 @@
 			display: block;
 			margin-left: 0;
 			line-height: 100%;
-			transition: text-indent .1s ease-in-out;
+			transition: padding .1s ease-in-out;
 
 			&:visited {
 				color: var(--color-link-visited);
@@ -457,7 +455,7 @@
 				
 				@media (width >= calc(1000 / 16 * 1rem)) {
 					color: var(--color-footer-link-hover);
-					text-indent: 8px;
+					padding-left: .4em;
 				}
 			}
 

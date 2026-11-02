@@ -355,8 +355,16 @@
 
 			@media (width >= calc(480 / 16 * 1rem) ) {
 				
-				flex-basis: 25%;
+				/* flex-basis: 25%; - it makes some of the columns fit too close together */
 				/* Show 4 columns side by side */
+			}
+
+			@media (width < calc(800 / 16 * 1rem) ) {
+
+				.footer__menu-1,
+				.footer__menu-4 {
+					flex-basis: 15%;
+				}
 			}
 
 			@media (width >= calc(900 / 16 * 1rem)) {
@@ -366,6 +374,10 @@
 
 				.footer__menu-2 {
 					padding: 0 15px;
+				}
+
+				.footer__menu-3 {
+					
 				}
 
 				.footer__menu-4 {
@@ -379,9 +391,10 @@
 			width: 100%;
 			text-align: center;
 			flex-basis: unset;
+			margin-block-end: unset;
 
 			@media (width <= calc(480 / 16 * 1rem)) {
-				padding-block: calc(40 / 16 * 1rem); /* Extra space above and below the logo for mobile portrait only */
+				padding-block: calc(20 / 16 * 1rem) 0; /* Extra space above and below the logo for mobile portrait only */
 			}
 
 			@media (width >= calc(900 / 16 * 1rem)) { 
@@ -492,9 +505,12 @@
 			transition: all .2s ease-in-out;
 			
 			@media (width <= calc(450 / 16 * 1rem) ) { /* Mobile query */
-				max-width: calc(200 / 16 * 1rem);
+				max-width: calc(250 / 16 * 1rem);
 				justify-self: center; /* OR margin-inline: auto; */
-				margin-block-end: calc(40 / 16 * 1rem);
+				/* margin-block-end: calc(40 / 16 * 1rem); */
+				order: 2; /* Move the image below the text content */
+				position: relative;
+				right: -5%; /* Move the image slightly to the right - visually centred from tail and not stars */
 			}
 
 			@media (width >= calc(600 / 16 * 1rem) ) {
@@ -542,13 +558,21 @@
 
 		.hero__buttons {
 
-			margin-top: 40px;
+			
 			/* justify-content: space-around; */
 			gap: 20px;
 
 			/* .button {
 				margin-right: 18px;
 			} */
+
+			@media (width <= calc(450 / 16 * 1rem)) {
+				justify-content: center;
+			}
+
+			@media (width >= calc(900 / 16 * 1rem)) {
+				margin-top: 40px;
+			}
 		}
 	}
 
@@ -602,14 +626,14 @@
 			display: flex;
 			flex-basis: 20%;
 			/* justify-content: flex-end; */
-			padding: 15px 0;
+			/* padding: 15px 0; */
 
 			@media (width <= calc(600 / 16 * 1rem)) {
 				justify-content: center;
 			}
 
 			@media (width >= calc(600 / 16 * 1rem)) {
-				padding: 5px 0;
+				/* padding: 5px 0; */
 			}
 
 			.icon {
@@ -655,7 +679,13 @@
 
 			.features__title {
 				line-height: 1;
+				margin-block-start: 15px;
 				margin-block-end: 10px;
+
+				@media (width >= 900 / 16 * 1rem)) {
+					margin-block-start: 20px;
+					margin-block-end: 10px;
+				}
 			}
 
 			.features__description {
@@ -673,9 +703,16 @@
 		color: var(--color-text-light);
 		
 		.fw-feature__image {
+			
 			width: 100%;
 			max-width: calc(792 / 16 * 1rem);
-			margin-block-start: 80px;
+			margin-block-start: calc(80 / 16 * 1rem);
+			margin-inline: auto;
+
+			@media (width <= calc(900 / 16 * 1rem)) {
+				width: 75%;
+				margin-block: unset;
+			}
 		}
 	}
 
@@ -687,6 +724,14 @@
 
 		.testimonial__container {
 			max-width: calc(800 / 16 * 1rem);
+
+			@media (width > calc(450 / 16 * 1rem)) and (width < calc(1200 / 16 * 1rem)) {
+				max-width: 40rem;
+			}
+		}
+
+		.testimonial__figure {
+			flex-direction: column;
 		}
 
 		.testimonial__icon { 
@@ -723,6 +768,10 @@
 			gap: 20px 30px;
 			text-align: center;
 			padding-block-end: 20px; /* Accounts for box shadow on author image */
+
+			@media (width <= calc(450 / 16 * 1rem)) {
+				order: -1;
+			}
 
 			@media (width >= calc(600 / 16 * 1rem)) {
 				flex-direction: row;

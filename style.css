@@ -503,6 +503,7 @@
 		.hero__image {
 			
 			transition: all .2s ease-in-out;
+			/* Unicorn search hook*/
 			
 			@media (width <= calc(450 / 16 * 1rem) ) { /* Mobile query */
 				max-width: calc(250 / 16 * 1rem);
@@ -511,6 +512,7 @@
 				order: 2; /* Move the image below the text content */
 				position: relative;
 				right: -5%; /* Move the image slightly to the right - visually centred from tail and not stars */
+				bottom: -12%;
 			}
 
 			@media (width >= calc(600 / 16 * 1rem) ) {
@@ -679,8 +681,9 @@
 
 			.features__title {
 				line-height: 1;
-				margin-block-start: 15px;
+				margin-block-start: 10px;
 				margin-block-end: 10px;
+				white-space: nowrap;
 
 				@media (width >= 900 / 16 * 1rem)) {
 					margin-block-start: 20px;
@@ -720,7 +723,7 @@
 	.testimonial {
 
 		padding-block: 80px;
-		border-bottom: 2px solid rgba(0,0,0,.2);
+		/* border-bottom: 2px solid rgba(0,0,0,.2); */
 
 		.testimonial__container {
 			max-width: calc(800 / 16 * 1rem);
